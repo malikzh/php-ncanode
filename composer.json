@@ -1,0 +1,20 @@
+{
+    "name": "malikzh/php-ncanode",
+    "description": "The PHP NCANode client",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Malik Zharykov",
+            "email": "cmalikz.h@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Malikzh\\PhpNCANode\\":"src/"
+        }
+    },
+    "require": {
+        "ext-curl": "^0.0.0"
+    }
+}
