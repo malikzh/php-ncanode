@@ -1,6 +1,6 @@
 {
     "name": "malikzh/php-ncanode",
-    "description": "The PHP NCANode client",
+    "description": "The NCANode PHP client",
     "type": "library",
     "license": "MIT",
     "authors": [
