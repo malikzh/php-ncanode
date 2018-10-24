@@ -13,8 +13,5 @@
         "psr-4": {
             "Malikzh\\PhpNCANode\\":"src/"
         }
-    },
-    "require": {
-        "ext-curl": "^0.0.0"
     }
 }
