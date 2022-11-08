@@ -1,5 +1,5 @@
 <?php
-namespace Malikzh\PhpNCANode;
+namespace Malikzh\PhpNCANode\Exceptions;
 
 
 class NCANodeException extends \Exception

@@ -18,28 +18,16 @@ composer require malikzh/php-ncanode
 $nca = new \Malikzh\PhpNCANode\NCANodeClient('http://127.0.0.1:14579');
 ```
 
-### Подпись XML
+### ПодписьCMS
 
 ```php
-$nca->xmlSign('<?xml version="1.0"?><root><dataToSign>mydata</dataToSign></root>', $p12InBase64, $password);
+$nca->cmsSign(string $base64data, string $p12Base64, string $sPassword);
 ```
 
-### Проверка подписи XML
+### Проверка подписи
 
 ```php
-$nca->xmlVerify('<signed xml>', $verifyOcsp, $verifyCrl);
-```
-
-### Информация о ключе PKCS12
-
-```php
-$nca->pkcs12Info($p12Base64, $sPassword, $bVerifyOcsp, $bVerifyCrl)
-```
-
-### Информация о сертификате X509
-
-```php
-$nca->x509Info($x509Base64, $bVerifyOcsp, $bVerifyCrl)
+$nca->cmsVerify(string $base64data)->isValid();
 ```
 
 ### Информация о сервере NCANode
@@ -51,6 +39,7 @@ $nca->nodeInfo()
 ## Авторы
 
 - **Malik Zharykov** - Initial work
+- **Rustem Kaimolla** - updated works
 
 ## Лицензия
 

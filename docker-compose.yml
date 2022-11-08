@@ -1,0 +1,19 @@
+version: '3'
+services:
+  ncanode:
+    image: 'malikzh/ncanode:3.2.1'
+    ports:
+      - '14579:14579'
+  fpm:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+      args:
+        WWWGROUP: '${WWWGROUP}'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    environment:
+      WWWUSER: '${WWWUSER}'
+    volumes:
+      - '.:/var/www/html'
+
