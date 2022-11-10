@@ -68,7 +68,7 @@ class Certificate
             $oDate = new DateTime('now');
         }
 
-        return $this->notBefore > $oDate && $this->notAfter < $oDate;
+        return $this->notBefore > $oDate || $this->notAfter < $oDate;
     }
 
     /**
