@@ -7,11 +7,24 @@
         {
             "name": "Malik Zharykov",
             "email": "cmalikz.h@gmail.com"
+        },
+        {
+            "name": "Rustem Kaimolla",
+            "email": "rustem@exact.kz"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Malikzh\\PhpNCANode\\":"src/"
+            "Malikzh\\PhpNCANode\\":"src/",
+            "Tests\\":"Tests/"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "require": {
+        "php": "^7.4",
+        "guzzlehttp/guzzle": "^7.5",
+      "ext-json": "*"
     }
 }
