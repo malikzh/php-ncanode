@@ -11,6 +11,10 @@
         {
             "name": "Rustem Kaimolla",
             "email": "rustem@exact.kz"
+        },
+        {
+            "name": "Rakhat Bakytzhanov",
+            "email": "singlephon@gmail.com"
         }
     ],
     "autoload": {

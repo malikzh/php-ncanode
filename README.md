@@ -94,7 +94,7 @@ $nca->cmsExtract($cmsFileBase64);
 
 - **Malik Zharykov** - Initial work
 - **Rustem Kaimolla** - updated works
-- **Rakhat Bakytzhanov** - updates to the latest version
+- **Rakhat Bakytzhanov** - updated works
 
 ## Лицензия
 

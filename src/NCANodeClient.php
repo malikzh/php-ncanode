@@ -212,6 +212,18 @@ class NCANodeClient extends Client
         return $response['cms'];
     }
 
+    /**
+     * @param string $base64data
+     * @param array $p12s
+     * @param string|null $alias
+     * @param bool $withTsp
+     * @param string $tsaPolicy
+     * @param bool $detached
+     * @return string|Exception
+     * @throws ApiErrorException
+     * @throws GuzzleException
+     * @throws InvalidResponseException
+     */
     public function cmsBulkSign(string $base64data, array $p12s, string $alias = null, bool $withTsp = true, string $tsaPolicy = 'TSA_GOST_POLICY', bool $detached = false): string|Exception
     {
         $request = [
@@ -241,6 +253,20 @@ class NCANodeClient extends Client
     }
 
 
+    /**
+     * @param string $base64data
+     * @param string $cms
+     * @param string $p12Base64
+     * @param string $sPassword
+     * @param string|null $alias
+     * @param bool $withTsp
+     * @param string $tsaPolicy
+     * @param bool $detached
+     * @return mixed
+     * @throws ApiErrorException
+     * @throws GuzzleException
+     * @throws InvalidResponseException
+     */
     public function cmsSignAdd(string $base64data, string $cms, string $p12Base64, string $sPassword, string $alias = null, bool $withTsp = true, string $tsaPolicy = 'TSA_GOST_POLICY', bool $detached = false)
     {
         $request = [
