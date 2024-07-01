@@ -31,7 +31,7 @@ class SignatureVerificationResult
     public function isValid(): bool
     {
         foreach ($this->signatureResult['signers'] as $signer) {
-            if ($signer['cert']['valid'] === false) {
+            if ($signer['certificates'][0]['valid'] === false) {
                 return false;
             }
         }
@@ -57,7 +57,7 @@ class SignatureVerificationResult
         $certificates = [];
 
         foreach ($this->signatureResult['signers'] as $signer) {
-            $certificates[] = new Certificate(array_merge($signer['cert'], ['chain' => $signer['chain']]));
+            $certificates[] = new Certificate(array_merge($signer['certificates'][0], @ ['chain' => $signer['chain']]));
         }
 
         return $certificates;

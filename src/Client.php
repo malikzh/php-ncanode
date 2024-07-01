@@ -2,10 +2,8 @@
 
 namespace Malikzh\PhpNCANode;
 
+use Exception;
 use GuzzleHttp\Exception\GuzzleException;
-use Illuminate\Http\Client\PendingRequest;
-use Illuminate\Http\Client\Request;
-use Illuminate\Support\Facades\Http;
 use Malikzh\PhpNCANode\Exceptions\ApiErrorException;
 use Malikzh\PhpNCANode\Exceptions\InvalidResponseException;
 
@@ -14,7 +12,7 @@ abstract class Client
     /**
      * @var string
      */
-    protected string $host    = '';
+    protected string $host = '';
 
     /**
      * @var int
@@ -22,10 +20,11 @@ abstract class Client
     protected int $timeout = 60;
 
     /**
+     * @deprecated
      * @var array|string[]
      */
     protected array $baseRequest = [
-        'version' => '2.0',
+        'version' => '3.0',
     ];
 
     /**
@@ -47,14 +46,22 @@ abstract class Client
      * @throws InvalidResponseException
      * @throws GuzzleException
      */
-    protected function request(array $request)
+    protected function request(array $request): array|Exception
     {
         $client = new \GuzzleHttp\Client([
             'base_uri' => $this->host,
             'timeout'  => $this->timeout,
         ]);
 
-        $result = $client->post($this->host, $request);
+        $endpoint = $this->host . $request['path'];
+        $body = $request['params'];
+
+        $result = $client->post($endpoint, [
+            'headers' => [
+                'Content-Type' => 'application/json',
+            ],
+            'body' => json_encode($body),
+        ]);
 
         $response = json_decode($result->getBody(), true);
 
@@ -62,7 +69,7 @@ abstract class Client
             throw new InvalidResponseException('Invalid response given: ' . var_export($result, true));
         }
 
-        if (($response['status'] !== 0) || $result->getStatusCode() !== 200) {
+        if ($result->getStatusCode() !== 200) {
             throw new ApiErrorException($response['message'], $response['status']);
         }
 
