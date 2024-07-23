@@ -18,10 +18,64 @@ composer require malikzh/php-ncanode
 $nca = new \Malikzh\PhpNCANode\NCANodeClient('http://127.0.0.1:14579');
 ```
 
-### ПодписьCMS
+### Получение информации о сертификате
 
 ```php
-$nca->cmsSign(string $base64data, string $p12Base64, string $sPassword);
+$response = $nca->pkcs12Info(p12Base64: $cert, sPassword: 'AAaa1234');
+$response->raw();
+```
+
+### Получение информации о нескольких сертификатов
+
+```php
+$response = $nca->pkcs12InfoBulk(p12s: [
+    [
+        'key' => $p12_1,
+        'password' => 'AAaa1234'
+    ],
+    [
+        'key' => $p12_2,
+        'password' => 'AAaa1234'
+    ],
+    # ...
+], revocationCheck: ['OCSP'], alias: null);
+```
+
+### Получение алиаса для ключа
+
+```php
+$response = $nca->pkcs12AliasInfo(p12Base64: $p12, sPassword: 'AAaa1234');
+```
+
+### Получение списка алиасов для ключей
+
+```php
+$response = $nca->pkcs12AliasesInfoBulk(p12s: [
+    [
+        'key' => $p12,
+        'password' => 'AAaa1234'
+    ],
+    # ...
+]);
+```
+
+
+### Подпись CMS
+
+```php
+$nca->cmsSign(string $base64data, string $p12, string $certPassword);
+```
+
+### Множественный подпись CMS
+
+```php
+$nca->cmsBulkSign(string $base64data, string $p12s);
+```
+
+### Добавить подпись в существующий CMS
+
+```php
+$nca->cmsSignAdd(string $base64data, string $cmsFilebase64, string $p12, string $certPassword);
 ```
 
 ### Проверка подписи
@@ -30,16 +84,17 @@ $nca->cmsSign(string $base64data, string $p12Base64, string $sPassword);
 $nca->cmsVerify(string $base64data)->isValid();
 ```
 
-### Информация о сервере NCANode
+### Извлекать данные из подписанной CMS.
 
 ```php
-$nca->nodeInfo()
+$nca->cmsExtract($cmsFileBase64);
 ```
 
 ## Авторы
 
 - **Malik Zharykov** - Initial work
 - **Rustem Kaimolla** - updated works
+- **Rakhat Bakytzhanov** - updated works
 
 ## Лицензия
 

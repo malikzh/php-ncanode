@@ -11,13 +11,20 @@
         {
             "name": "Rustem Kaimolla",
             "email": "rustem@exact.kz"
+        },
+        {
+            "name": "Rakhat Bakytzhanov",
+            "email": "singlephon@gmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
             "Malikzh\\PhpNCANode\\":"src/",
             "Tests\\":"Tests/"
-        }
+        },
+        "files": [
+            "etc/helpers.php"
+        ]
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
@@ -25,6 +32,6 @@
     "require": {
         "php": "^7.4",
         "guzzlehttp/guzzle": "^7.5",
-      "ext-json": "*"
+        "ext-json": "*"
     }
 }
